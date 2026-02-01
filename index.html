@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aliya, Be My Valentine 💘</title>
   <style>
-    * { box-sizing: border-box; font-family: 'Sans-serif', 'Poppins' ; }
+    * { box-sizing: border-box; font-family: 'Comic Sans MS', 'Poppins', cursive; }
 
     body {
       margin: 0; height: 100vh;
@@ -106,13 +106,11 @@
   <!-- STEP 3 -->
   <div class="card" id="step3">
     <div class="progress">🧥 3 / 6</div>
-    <h1 class="floaty">Hoodie Test 🫣</h1>
-    <p>If I stole your hoodie… how dramatic would you be?</p>
-    <div class="sliderWrap">
-      <input type="range" min="0" max="100" value="80" id="hoodie" />
-      <p><strong id="hoodieTxt">Very dramatic 😤</strong></p>
-    </div>
-    <button class="next pulse" onclick="nextStep(); popConfetti(this)">Next 😈</button>
+    <h1 class="floaty"><div class="progress">☀️ 3 / 6</div>
+    <h1 class="floaty">Our Wedding 💍</h1>
+    <p>Picture this… our wedding day 🤍<br>The smiles, the happy tears, the forever promises.<br>Every moment leads to <strong>us</strong>.</p>
+    <div class="emoji bounce">💐💍✨</div>
+    <button class="next pulse" onclick="nextStep(); popConfetti(this)">I can see it 🥹</button>
   </div>
 
   <!-- STEP 4 -->
@@ -131,7 +129,7 @@
   <div class="card" id="step5">
     <div class="progress">💍 5 / 6</div>
     <h1 class="pulse">Aliya 💘</h1>
-    <p>Will you be my Valentine?<br>I promise love, laughs, and forever annoying you 🥹</p>
+    <p>Will you marry me?<br>I promise love, laughs, and forever annoying you 🥹</p>
     <div class="buttons">
       <button class="yes pulse" onclick="handleFinalYes(this)">YES 💍💖</button>
       <button class="no" id="no">NO 🙈</button>
@@ -143,11 +141,16 @@
     <div class="progress">💖 6 / 6</div>
     <h1 class="bounce">She said YES!! 💖</h1>
     <p>
-      Thank you for choosing me as your Valentine, Aliya 🌹<br>
-      You made the right choice 😌💘<br><br>
-      This little universe exists just for you ✨
+      Thank you for saying YES to marrying me, Aliya 💍🤍<br>
+      You didn’t just choose me — you chose our forever 🥹💖<br><br>
+      I promise to love you, protect you, and stand by you for the rest of my life ✨
     </p>
     <div class="emoji pulse">💖💖💖</div>
+    <p style="margin-top:16px;">
+      And my love… I know you’re not feeling well right now 🌸<br>
+      I wish you the fastest, warmest recovery — I need your smile back soon 🤍<br><br>
+      I love you endlessly. Truly, madly, forever.
+    </p>
   </div>
 
 <script>
@@ -233,6 +236,6 @@
     h.style.animationDuration = 3+Math.random()*5+'s';
     document.body.appendChild(h);
   }
-
 </script>
-
+</body>
+</html>
