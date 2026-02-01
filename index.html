@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aliya, Be My Valentine 💘</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Comic Sans MS', 'Poppins', cursive; }
+
+    body {
+      margin: 0; height: 100vh;
+      background: radial-gradient(circle at top, #ffd1dc, #ff9a9e, #fad0c4);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.95);
+      padding: 36px; border-radius: 26px; text-align: center;
+      max-width: 420px; width: 92%;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+      display: none; position: relative;
+      animation: popIn .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .card.active { display: block; }
+
+    h1 { color: #ff4d6d; margin: 6px 0 10px; }
+    p { color: #555; font-size: 1.1rem; margin-bottom: 18px; }
+
+    .progress {
+      position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+      background:#fff; border-radius:20px; padding:6px 14px;
+      box-shadow:0 8px 18px rgba(0,0,0,.15);
+      font-size:.9rem; color:#ff4d6d;
+    }
+
+    button {
+      padding: 14px 24px; border: none; border-radius: 30px; font-size: 1rem;
+      cursor: pointer; margin: 10px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    button:hover { transform: translateY(-2px) scale(1.04); box-shadow:0 12px 24px rgba(0,0,0,.18); }
+
+    .yes { background: linear-gradient(135deg,#ff4d6d,#ff85a1); color: #fff; }
+    .next { background: linear-gradient(135deg,#ff85a1,#ffc2d1); color:#fff; }
+    .no { background:#ccc; color:#333; position:absolute; }
+
+    .buttons { position: relative; height: 120px; }
+
+    .wiggle { animation: wiggle 1.2s infinite; }
+    .bounce { animation: bounce 1.2s infinite; }
+    .pulse { animation: pulse 1.4s infinite; }
+    .floaty { animation: floaty 3s ease-in-out infinite; }
+
+    @keyframes wiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-3deg)} 75%{transform:rotate(3deg)} }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.12)} 100%{transform:scale(1)} }
+    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+
+    .emoji { font-size: 2.1rem; }
+    .typing { min-height: 1.5em; }
+
+    .sliderWrap { margin: 14px 0 6px; }
+    input[type=range] { width: 100%; accent-color:#ff4d6d; }
+
+    .check { display:flex; align-items:center; justify-content:center; gap:8px; }
+    .check input { transform: scale(1.4); }
+
+    .heart { position:absolute; font-size:18px; opacity:.8; animation: float 6s linear infinite; }
+    @keyframes float { 0%{transform:translateY(110vh)} 100%{transform:translateY(-10vh)} }
+
+    .confetti {
+      position:absolute;
+      width:8px; height:12px;
+      background:#ff4d6d;
+      animation: confetti 1.5s ease-out forwards;
+    }
+    @keyframes confetti {
+      from { transform: translateY(0) rotate(0); opacity:1; }
+      to { transform: translateY(220px) rotate(240deg); opacity:0; }
+    }
+
+    @keyframes popIn { from{transform:scale(.7); opacity:0} to{transform:scale(1); opacity:1} }
+  </style>
+</head>
+<body>
+
+  <!-- STEP 1 -->
+  <div class="card active" id="step1">
+    <div class="progress">💖 1 / 6</div>
+    <h1 class="floaty">Hey Aliya 💖</h1>
+    <p class="typing" id="type1"></p>
+    <div class="emoji bounce">🌸💘🌸</div>
+    <button class="next pulse" onclick="nextStep(); popConfetti(this)">I’m ready 💕</button>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card" id="step2">
+    <div class="progress">✨ 2 / 6</div>
+    <h1 class="wiggle">Tiny Promise 🤞</h1>
+    <p>Do you promise to smile at least once today because of me?</p>
+    <button class="yes bounce" onclick="nextStep(); popConfetti(this)">I promise 😌</button>
+    <button class="yes bounce" onclick="nextStep(); popConfetti(this)">Already smiling 🙄💖</button>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="card" id="step3">
+    <div class="progress">🧥 3 / 6</div>
+    <h1 class="floaty">Hoodie Test 🫣</h1>
+    <p>If I stole your hoodie… how dramatic would you be?</p>
+    <div class="sliderWrap">
+      <input type="range" min="0" max="100" value="80" id="hoodie" />
+      <p><strong id="hoodieTxt">Very dramatic 😤</strong></p>
+    </div>
+    <button class="next pulse" onclick="nextStep(); popConfetti(this)">Next 😈</button>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="card" id="step4">
+    <div class="progress">☀️ 4 / 6</div>
+    <h1 class="bounce">Honesty Hour 🥺</h1>
+    <p>Do I make your days brighter?</p>
+    <div class="check">
+      <input type="checkbox" id="autoCheck" />
+      <label for="autoCheck">Yes (this box insists on being checked)</label>
+    </div>
+    <button class="next wiggle" onclick="nextStep(); popConfetti(this)">Obviously 💖</button>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="card" id="step5">
+    <div class="progress">💍 5 / 6</div>
+    <h1 class="pulse">Aliya 💘</h1>
+    <p>Will you be my Valentine?<br>I promise love, laughs, and forever annoying you 🥹</p>
+    <div class="buttons">
+      <button class="yes pulse" onclick="handleFinalYes(this)">YES 💍💖</button>
+      <button class="no" id="no">NO 🙈</button>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="card" id="final">
+    <div class="progress">💖 6 / 6</div>
+    <h1 class="bounce">She said YES!! 💖</h1>
+    <p>
+      Thank you for choosing me as your Valentine, Aliya 🌹<br>
+      You made the right choice 😌💘<br><br>
+      This little universe exists just for you ✨
+    </p>
+    <div class="emoji pulse">💖💖💖</div>
+  </div>
+
+<script>
+  // typing effect
+  const typeText = "Before we begin… are you ready for a tiny love adventure made just for you? ✨";
+  let ti = 0; const tEl = document.getElementById('type1');
+  (function type(){ if(ti <= typeText.length){ tEl.textContent = typeText.slice(0, ti++); setTimeout(type, 28); } })();
+
+  // stepper
+  let step = 1;
+  let sawNoChaos = false;
+  function nextStep(){
+    document.getElementById('step'+step)?.classList.remove('active');
+    step++;
+    document.getElementById('step'+step)?.classList.add('active');
+    if(step === 6) document.getElementById('final').classList.add('active');
+  }
+
+  // CONFETTI (FIXED ✅)
+  function popConfetti(button){
+    const rect = button.getBoundingClientRect();
+    for(let i=0;i<30;i++){
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = rect.left + rect.width/2 + (Math.random()*120-60) + 'px';
+      c.style.top = rect.top + (Math.random()*20) + 'px';
+      c.style.background = Math.random() > 0.5 ? '#ff4d6d' : '#ffc2d1';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 1500);
+    }
+  }
+
+  function bigCelebration(){
+    for(let i=0;i<4;i++){
+      setTimeout(()=>popConfetti(document.body), i*200);
+    }
+  }
+
+  // NO button chaos
+  const noBtn = document.getElementById('no');
+  if(noBtn){
+    noBtn.addEventListener('mouseover', moveNo);
+    noBtn.addEventListener('click', moveNo);
+  }
+  function moveNo(){
+    sawNoChaos = true;
+    const x = Math.random()*260-130;
+    const y = Math.random()*120-60;
+    noBtn.style.transform = `translate(${x}px,${y}px) rotate(${Math.random()*20-10}deg)`;
+  }
+
+  function handleFinalYes(btn){
+    if(!sawNoChaos){
+      alert('Wait 😳 you HAVE to try the NO button first… trust me');
+      noBtn.classList.add('wiggle');
+      setTimeout(()=>noBtn.classList.remove('wiggle'),1200);
+      return;
+    }
+    popConfetti(btn);
+    nextStep();
+  }
+
+  // slider behavior
+  const hoodie = document.getElementById('hoodie');
+  const hoodieTxt = document.getElementById('hoodieTxt');
+  if(hoodie){
+    hoodie.addEventListener('input', ()=>{
+      hoodie.value = Math.max(70, hoodie.value);
+      hoodieTxt.textContent = hoodie.value > 90 ? 'Extremely dramatic 😭' : 'Very dramatic 😤';
+    });
+  }
+
+  // checkbox insists
+  const auto = document.getElementById('autoCheck');
+  if(auto){ auto.addEventListener('click', ()=> setTimeout(()=>auto.checked = true, 120)); }
+
+  // floating hearts
+  for(let i=0;i<26;i++){
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = '💖';
+    h.style.left = Math.random()*100+'vw';
+    h.style.animationDuration = 3+Math.random()*5+'s';
+    document.body.appendChild(h);
+  }
+</script>
